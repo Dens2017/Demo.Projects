@@ -1,1 +1,1 @@
-#M icrosoft Authentication Library (MSAL)
+# Microsoft Authentication Library (MSAL)
