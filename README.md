@@ -58,4 +58,10 @@ Your client app needs a way to trust the security tokens issued to it by the Mic
   * Web APIs that call a web API
   * Daemon apps, even when implemented as a console service like a Linux daemon or a Windows service
 
-
+### Security Options for the API
+- Require users to login in the App
+- Redirect URL
+- Allowed Application permissions
+- Exposed API
+- App Roles
+- Token Optioal Claims
