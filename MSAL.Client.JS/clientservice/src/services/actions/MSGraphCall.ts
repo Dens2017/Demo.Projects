@@ -6,7 +6,7 @@ export class MSGraphCall {
     const msalInstance = new msal.PublicClientApplication(msalConfig);
     let currentAccounts = msalInstance.getAllAccounts();
     var loginRequest = {
-      scopes: ["https://graph.microsoft.com/User.Read"],
+      scopes: [process.env.REACT_APP_MSGRAPH_SCOPE || ""],
       forceRefresh: false,
       prompt: 'select_account',
     }
@@ -19,7 +19,7 @@ export class MSGraphCall {
         requestAccount = {
           account: currentAccounts[0],
           //extraQueryParameters: { aud: currentAccounts[0].idTokenClaims.aud },
-          scopes: ["https://graph.microsoft.com/User.Read"]
+          scopes: [process.env.REACT_APP_MSGRAPH_SCOPE || ""]
         };
       } else return "np audience claim"
     } else return "no token claim";
@@ -48,8 +48,8 @@ export class MSGraphCall {
 
 const msalConfig = {
   auth: {
-    clientId: '5fa9e0e0-98b7-4f0e-b4d0-2b19319b3150',
-    authority: 'https://login.microsoftonline.com/9b1107fa-e2eb-47e9-8025-4474ed37c174',
+    clientId: process.env.REACT_APP_MSGRAPH_CLIENTID || "",
+    authority: process.env.REACT_APP_AUTHORITY || "",
   },
   cache: {
     cacheLocation: "sessionStorage", // This configures where your cache will be stored

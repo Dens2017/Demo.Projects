@@ -7,7 +7,7 @@ export class StorageSASfenerator {
     let currentAccounts = msalInstance.getAllAccounts();
     console.log('Accounts', currentAccounts);
     var loginRequest = {
-      scopes: ["api://fe835d2b-bba1-42d1-9e60-7aaadadf6a57/user_impersonation"],
+      scopes: [process.env.REACT_APP_SASGENERATOR_SCOPE || ""],
       forceRefresh: false,
       prompt: 'select_account',
     }
@@ -19,7 +19,7 @@ export class StorageSASfenerator {
       if (currentAccounts[0].idTokenClaims.aud) {
         requestAccount = {
           account: currentAccounts[0],
-          scopes: ["api://fe835d2b-bba1-42d1-9e60-7aaadadf6a57/user_impersonation"],
+          scopes: [process.env.REACT_APP_SASGENERATOR_SCOPE || ""],
         };
       } else return "np audience claim"
     } else return "no token claim";
@@ -34,7 +34,7 @@ export class StorageSASfenerator {
         "Authorization": bearer
       },
     }
-    return await fetch("https://storagetokenservice.azurewebsites.net/api/StorageTokenGenerator?code=/eu6E7fhDxh0E54a8CtX7NlTp5aT6QcgS6pqiIbCNaSjV1DrqksS/w==&storagename=teststorage345&containername=testcontainer&permission=read", apiOptions).then(async (response) => {
+    return await fetch(process.env.REACT_APP_SASGENERATOR_API || "", apiOptions).then(async (response) => {
       return await response.json().then((response) => {
         console.log("Storage Account API Response", response);
         return response;
@@ -48,8 +48,8 @@ export class StorageSASfenerator {
 
 const msalConfig = {
   auth: {
-    clientId: 'fe835d2b-bba1-42d1-9e60-7aaadadf6a57',
-    authority: 'https://login.microsoftonline.com/9b1107fa-e2eb-47e9-8025-4474ed37c174',
+    clientId: process.env.REACT_APP_STORAGESERVICE_CLIENTID || "",
+    authority: process.env.REACT_APP_AUTHORITY || "",
   },
   cache: {
     cacheLocation: "sessionStorage", // This configures where your cache will be stored
