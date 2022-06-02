@@ -30,15 +30,17 @@ Authorization is the act of granting an authenticated party permission to do som
 
 ## Tokens
 Tokens are just bunch of strings that can be decoded to see what information it contains. MSAL use bearer tokens to authenticate and authorize access to resources. Two of the most common token use in MSAL are:
-- **Access tokens** - Access tokens are issued by the authorization server to the client application. The client passes access tokens to the resource server. Access tokens contain the permissions the client has been granted by the authorization server.
-- **ID tokens** - ID tokens are issued by the authorization server to the client application. Clients use ID tokens when signing in users and to get basic information about them.
+- **ID tokens** - ID tokens are issued by the authorization server to the client application. Clients use ID tokens when signing in users and to get basic information about them. It is the first token to be released upon success Authentication.
+- **Access tokens** - Access tokens are issued by the authorization server to the client application. The client passes access tokens to the resource server. Access tokens contain the permissions the client has been granted by the authorization server. 
 
 ## App registration
 Your client app needs a way to trust the security tokens issued to it by the Microsoft identity platform. App Services / Web Apps and Function Apps / Web API can optionally have an App Registration so client can interact with your resources. The only whay that you don't need App Registration is if you expose the Web App or Web API publicy not needing any Authentication and Authorization at all. Like informational sites of the government and exposed API that return the weather on your location. Two the most commonly referenced app registration settings are:
 
 - **Application (client) ID** - Also called application ID and client ID, this value is assigned to your app by the Microsoft identity platform. The client ID uniquely identifies your app in the identity platform and is included in the security tokens the platform issues.
 - **Redirect URI** - The authorization server uses a redirect URI to direct the resource owner's user-agent (web browser, mobile app) to another destination after completing their interaction. For example, after the end-user authenticates with the authorization server. Not all client types use redirect URIs.
-- **Permission** - Granular definition of access available to be consumed by the client.
+- **Permission** - Granular definition of access available to be consumed by the client. It is categorized into 2 types.
+  * **Delegated Permissions** - are permissions intended for sign in users. Using the user's credential it can request for an Access Token.
+  * **Application Permissions** - are permissions for the calling API without any need for sign in user. APU can be protected using Secrets or Certificates to request for an Access Token.
 
 ### Diagram when a user is calling an API
 ![Picture](https://docs.microsoft.com/en-us/azure/active-directory/develop/media/scenarios/scenarios-with-users.svg)
