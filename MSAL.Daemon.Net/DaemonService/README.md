@@ -17,4 +17,16 @@ This is the first Application that will return all the users inlusing their basi
   * Application Permission to MS Graph User.ReadAll
 
 ## SQL Service API
-this is the second Application that will fetch the Product list in SQL Database. 
+This is the second Application that will fetch the Product list in SQL Database. 
+
+### Setup Requirements
+- Azure Function
+  * Identity Enabled
+  * Microsoft Authentication Enabled
+  * Bind to an App Registration
+- Key vault
+  * Access Policy to Get Secret
+  * Secret Value stored here
+- App Registration
+  * Redirect URL pointed back to the calling API
+  * Application Permission to Azure SQL Database
