@@ -1,46 +1,36 @@
-# Getting Started with Create React App
+# Delegated MSAL
+This project is about calling an API by a sign-in user. User can use various Authorization to authenticated and some of the popular Authorization endpoints are Microsoft, Facebook, Google, Github, Apple, Twitter and even OpenID. For the purpose of the demonstration I will use Microsoft as an Authentication as using other Authorization needs difference libraries to get credential Information. For the purpose of this presentation I created 4 client side actions, one is to call MS Graph, the other one is to call an API to return the generated Storage SAS Token, the third is calling an API but you need to be a member of a Group and lastly calling an API on certain location only. I uset React Typescript Framework to construct the Web App that can call the API. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## MS Graph Service API to all login users
+This is the first Application that will return the current user basic information.
 
-## Available Scripts
+### Setup Requirements
+- Azure Function
+  * Identity Enabled
+  * Microsoft Authentication Enabled
+  * Bind to an App Registration
+- Key vault
+  * Access Policy to Get Secret
+  * Secret Value stored here
+- App Registration
+  * Redirect Web URL pointed back to the calling Web App
+  * Redirect Single Page Application to the calling Web App so tokens will be acquired in the same page. If you don't do this you will have CORS problem as you didn't pass the token back to the page. Requesting for a token to a specific app needs you to do some cross domain where by default is not permitted. 
+  * Delegated Permission to MS Graph User.ReadAll
 
-In the project directory, you can run:
+## SAS Generator API open to login users
+This is the second Application that will fetch Read SAS Token to be used in accessing files in the Private Azure Storage
 
-### `npm start`
+### Setup Requirements
+- Azure Function
+  * Identity Enabled
+  * Microsoft Authentication Enabled
+  * Bind to an App Registration
+- Key vault
+  * Access Policy to Get Secret
+  * Secret Value stored here
+- App Registration
+  * Redirect Web URL pointed back to the calling Web App
+  * Redirect Single Page Application to the calling Web App so tokens will be acquired in the same page. If you don't do this you will have CORS problem as you didn't pass the token back to the page. Requesting for a token to a specific app needs you to do some cross domain where by default is not permitted. 
+  * Delegated Permission to MS Graph User.ReadAll
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
