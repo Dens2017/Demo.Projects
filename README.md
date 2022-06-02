@@ -64,4 +64,4 @@ Your client app needs a way to trust the security tokens issued to it by the Mic
 - Allowed Application permissions
 - Exposed API
 - App Roles
-- Token Optioal Claims
+- Token Optional Claims
