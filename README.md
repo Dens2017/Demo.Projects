@@ -45,3 +45,15 @@ Your client app needs a way to trust the security tokens issued to it by the Mic
 
 ### Diagram when a deamon / service is calling an API
 ![Picture](https://docs.microsoft.com/en-us/azure/active-directory/develop/media/scenarios/daemon-app.svg)
+
+- **Public client applications**: Apps in this category, like the following types, always sign in users:
+  * Desktop apps that call web APIs on behalf of signed-in users
+  * Mobile apps
+  * Apps running on devices that don't have a browser, like those running on IoT
+
+- **Confidential client applications**: Apps in this category include:
+  * Web apps that call a web API
+  * Web APIs that call a web API
+  * Daemon apps, even when implemented as a console service like a Linux daemon or a Windows service
+
+
