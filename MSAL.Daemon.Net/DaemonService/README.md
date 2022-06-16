@@ -30,3 +30,6 @@ This is the second Application that will fetch the Product list in SQL Database.
 - App Registration
   * Redirect URL pointed back to the calling API
   * Application Permission to Azure SQL Database
+  * AD Group. Add the Azure Function identity as a member
+- SQL Database
+  * Add the AD Group as a Database user, assigned an appropriate role
